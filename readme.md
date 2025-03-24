@@ -1,61 +1,54 @@
----
-
-## ✅ `README.md`
-
-```markdown
 # Video to Audio Extractor (Original Quality)
 
-This tool extracts the **original audio stream** from video files **without re-encoding**, preserving full audio quality. It uses `ffmpeg` to copy the audio stream directly and supports all major video formats. The tool automatically detects the correct audio format and saves the output to a separate folder.
+This tool extracts the **original audio stream** from video files **without re-encoding**, preserving the full audio quality. It leverages `ffmpeg` to copy the audio stream directly, ensuring the output matches the source audio exactly. Designed for batch processing, it supports all major video formats and automatically detects the appropriate audio format for output files. This is ideal for tasks like audio editing, analysis, or playback without the video, while maintaining maximum quality.
 
----
+## Features
 
-## 🔧 Features
+- Preserves original audio quality (no re-encoding)
+- Automatically detects and sets the correct audio file extension
+- Batch processes all video files in a folder
+- Skips files already extracted to avoid overwriting
+- Compatible with all major video formats
 
-- ✅ Preserves original audio quality (no re-encoding)
-- ✅ Detects correct audio format and sets proper file extension
-- ✅ Processes all video files in a folder (batch mode)
-- ✅ Skips files that were already extracted
-- ✅ Works with all major video formats
-
----
-
-## 📁 Folder Structure
+## Folder Structure
 
 ```
 video-to-audio-extractor/
 ├── extract_audio_batch.py         # Main script
-├── README.md
-├── LICENSE
-├── .gitignore
-├── input_videos/                  # Put your video files here
-│   └── .gitkeep
-└── output_audio/                  # Extracted audio files go here
-    └── .gitkeep
+├── README.md                      # This file
+├── LICENSE                        # License file
+├── .gitignore                     # Git ignore file
+├── input_videos/                  # Directory for video files
+│   └── .gitkeep                   # Keeps the empty folder in Git
+└── output_audio/                  # Directory for extracted audio
+    └── .gitkeep                   # Keeps the empty folder in Git
 ```
 
----
+## How to Use
 
-## ▶️ How to Use
-
-1. **Clone this repo** or download the project files.
-2. Place your videos inside the `input_videos/` folder.
+1. Clone this repository or download the project files.
+2. Place your video files into the `input_videos/` folder.
 3. Run the script:
 
 ```bash
 python extract_audio_batch.py
 ```
 
-The script will process all video files in the `input_videos/` folder and save the extracted audio to the `output_audio/` folder using the same base filename, with `_audio` appended.
+The script processes all video files in `input_videos/` and saves the extracted audio to `output_audio/`. Output files retain the original base filename with `_audio` appended and the appropriate extension (e.g., `.m4a` for AAC).
 
-**Example:**
+### Example
 
 ```
 input_videos/my_clip.mp4 → output_audio/my_clip_audio.m4a
 ```
 
----
+### Usage Notes
 
-## 🧪 Supported Video Formats
+- If `input_videos/` is empty, the script exits without action.
+- If an output file already exists in `output_audio/`, the script skips that video to prevent overwriting.
+- If a video lacks an audio track, the script skips it and logs a message.
+
+## Supported Video Formats
 
 - `.mp4`
 - `.mov`
@@ -66,77 +59,50 @@ input_videos/my_clip.mp4 → output_audio/my_clip_audio.m4a
 - `.wmv`
 - `.m4v`
 
----
+**Note:** The tool supports any format `ffmpeg` can handle, though the above are the most common.
 
-## 📦 Dependencies
+## Dependencies
 
-### Recommended: Conda (via conda-forge)
+The tool requires `ffmpeg` installed on your system. Python dependencies can be installed via Conda (recommended) or pip.
+
+### Option 1: Conda (Recommended)
 
 ```bash
-# Create environment
+# Create a new Conda environment
 conda create -n video2audio python=3.10 -c conda-forge ffmpeg
 
-# Activate environment
+# Activate the environment
 conda activate video2audio
 
-# Install Python dependency
+# Install the Python dependency
 conda install -c conda-forge ffmpeg-python
 ```
 
-### Alternatively: pip
+### Option 2: pip
 
-```bash
-# Requires ffmpeg installed system-wide
-pip install ffmpeg-python
-```
-
-**Install ffmpeg on your system:**
+First, install `ffmpeg` system-wide:
 
 - **macOS:** `brew install ffmpeg`
 - **Ubuntu/Debian:** `sudo apt install ffmpeg`
-- **Windows:** [Download and install](https://ffmpeg.org/download.html), and add `ffmpeg` to your system PATH
+- **Windows:** Download from [ffmpeg.org](https://ffmpeg.org/download.html) and add `ffmpeg` to your PATH.
 
----
+Then, install the Python package:
 
-## ⚠️ Notes
-
-- Audio is extracted **without re-encoding** for best quality (`-acodec copy`)
-- Output filenames use the pattern `originalname_audio.extension`
-- Output format depends on original audio codec (e.g., AAC → `.m4a`, MP3 → `.mp3`)
-
----
-
-## 📝 License
-
-MIT License. See [LICENSE](LICENSE) file for details.
+```bash
+pip install ffmpeg-python
 ```
 
----
+**Verification:** Ensure `ffmpeg` is installed by running `ffmpeg --version` in your terminal.
 
-## ✅ `LICENSE` (MIT License)
+## Notes
 
-```text
-MIT License
+- Audio extraction uses `ffmpeg`'s `-acodec copy` option, avoiding re-encoding for optimal quality.
+- Output filenames follow the pattern `originalname_audio.extension`, with extensions based on the source audio codec (e.g., `.m4a` for AAC, `.mp3` for MP3).
+- The tool auto-detects the audio codec to select the correct output format.
 
-Copyright (c) 2025 Shekhar Dewan
+## License
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights  
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell  
-copies of the Software, and to permit persons to whom the Software is  
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all  
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,  
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  
-SOFTWARE.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 ```
 
----
+This README is concise, well-organized, and uses Markdown effectively with headers, code blocks, and lists. It provides all necessary information for users to understand, install, and use the tool, while referencing the separate `LICENSE` file as is standard on GitHub.

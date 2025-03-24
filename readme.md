@@ -104,5 +104,3 @@ pip install ffmpeg-python
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 ```
-
-This README is concise, well-organized, and uses Markdown effectively with headers, code blocks, and lists. It provides all necessary information for users to understand, install, and use the tool, while referencing the separate `LICENSE` file as is standard on GitHub.
